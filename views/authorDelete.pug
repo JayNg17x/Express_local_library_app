@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+    h1 #{title} : #{author.name}
+    p (#{author.dateOfBirth} - #{author.dateOfDeath})
+    if authorBooks.length
+        p #[Strong You must delete the following books first, then can delete the author.]
+        div(style='margin=left:20px; margin-top:20px')
+            h4 Books 
+            dl
+            each val in authorBooks
+               dt 
+                 a(href=val.url) #{val.title}
+               dd #{val.summary}
+
+    else 
+        p Do you really want to delete this author ?
+        form(method='POST' action='')
+            div.form-group
+                input#authorId.form-control(type='hidden' name='authorId' reuqired='true' value=author._id)
+            button.btn.btn-primary(type='submit') Submit 

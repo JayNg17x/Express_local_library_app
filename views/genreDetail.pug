@@ -1,0 +1,18 @@
+extends layout
+
+block content 
+    h1 Genre: #{genre.name}
+    div(style='margin-left:20px; margin-top:20px')
+        h3 Books 
+        dl 
+        each val in genreBooks 
+            dt 
+                a(href=val.url) #{val.title}
+            dd #{val.summary}
+        else 
+            p This genre has no books.
+    hr 
+    p 
+        a(href=genre.url + '/delete') Delete genre
+    p
+        a(href=genre.url + '/update') Update genre
